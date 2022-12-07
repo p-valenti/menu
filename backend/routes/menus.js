@@ -1,4 +1,5 @@
 const express = require('express')
+const Menu = require('../models/menuModel')
 
 const router = express.Router()
 
@@ -13,8 +14,14 @@ router.get('/:id', (req, res) => {
 })
 
 //POST a new menu
-router.post('/', (req, res) => {
-    res.json({mssg: 'POST a new menu'})
+router.post('/', async (req, res) => {
+    const {title, amount} = req.body
+    try {
+        const menu = await Menu.create({title, amount})
+        res.status(200).json(menu)
+    } catch (error){
+        res.status(400).json({error: error.message})
+    }
 })
 
 //DELETE a menu
