@@ -1,17 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-export const Navbar = ({onRouteChange}) => {
+export const Navbar = () => {
   return (
-    <nav>
-        <a href='#2'> Home</a>
-        <div>
-            <a onClick={() => onRouteChange("Menu") } href="#0">
-                Menu
-            </a>
-            <a onClick={() => onRouteChange("Recipes") } href="#1">
-                Recipes
-            </a>
-        </div>
-    </nav>
+    <header>
+      <div className='container'>
+        <Link to="/">
+          <h1>Food menu</h1>
+        </Link>
+      </div>
+    </header>
   )
 }
+
+export default Navbar;
