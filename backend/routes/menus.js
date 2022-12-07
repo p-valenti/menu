@@ -1,37 +1,27 @@
 const express = require('express')
-const Menu = require('../models/menuModel')
+const {
+    createMenu,
+    getMenus,
+    getMenu,
+    deleteMenu,
+    updateMenu
+} = require('../controllers/menuController')
 
 const router = express.Router()
 
 // GET all menus
-router.get('/', (req, res) => {
-    res.json({mssg: 'GET all menus'})
-})
+router.get('/', getMenus)
 
 // GET a single menu
-router.get('/:id', (req, res) => {
-    res.json({mssg: 'GET a single menu'})
-})
+router.get('/:id', getMenu)
 
 //POST a new menu
-router.post('/', async (req, res) => {
-    const {title, amount} = req.body
-    try {
-        const menu = await Menu.create({title, amount})
-        res.status(200).json(menu)
-    } catch (error){
-        res.status(400).json({error: error.message})
-    }
-})
+router.post('/', createMenu)
 
 //DELETE a menu
-router.delete('/:id', (req, res) => {
-    res.json({mssg: 'DELETE a menu'})
-})
+router.delete('/:id', deleteMenu)
 
 //UPDATE a menu
-router.patch('/:id', (req, res) => {
-    res.json({mssg: 'UPDATE a menu'})
-})
+router.patch('/:id', updateMenu)
 
 module.exports = router
