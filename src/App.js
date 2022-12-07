@@ -1,11 +1,16 @@
-import { Header } from "./components/Header";
-import { StartPage } from "./components/StartPage";
+import { useState } from "react";
+import { Navbar } from "./components/Navbar";
 
 function App() {
+  const [route, routeState] = useState ('home') 
+  onRouteChange = event => {
+    console.log("asd");
+    this.setState({ route: event });
+  };
+  
   return (
     <>
-    <Header />
-    <StartPage />
+    <Navbar />
     </>
   );
 }
