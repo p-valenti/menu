@@ -22,10 +22,10 @@ const getMenu = async (req, res) => {
 
 // create new menu
 const createMenu = async (req, res) => {
-    const {title, amount} = req.body
+    const {date, title, amount} = req.body
     // add doc to db
     try {
-        const menu = await Menu.create({title, amount})
+        const menu = await Menu.create({date, title, amount})
         res.status(200).json(menu)
     } catch (error){
         res.status(400).json({error: error.message})
