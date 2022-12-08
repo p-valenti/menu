@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
+import MenuDetails from '../components/MenuDetails'
 
 const Home = () => {
     const [menus, setMenus] = useState(null)
     useEffect(() => {
         const fetchMenus = async () => {
-            const response = await fetch('http://localhost:4000/api/menus')
+            const response = await fetch('/api/menus')
             const json = await response.json()
             if (response.ok) {
                 setMenus(json)
@@ -16,7 +17,7 @@ const Home = () => {
         <div className="home">
             <div className="menus">
                 {menus && menus.map((menu) => (
-                    <p key={menu.date}>{menu.date}</p>
+                    <MenuDetails key={menu._id} menu={menu} />
                 ))}
             </div>
         </div>
