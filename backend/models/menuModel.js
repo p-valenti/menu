@@ -14,6 +14,10 @@ const menuSchema = new Schema({
     amount: {
         type: Number,
         required: true
+    },
+    user_id: {
+        type: String,
+        required: true
     }
 })
 

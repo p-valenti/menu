@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 
 //get all menus
 const getMenus = async (req, res) => {
-    const menus = await Menu.find({}).sort({createAt: -1})
+    const user_id = req.user._id
+    const menus = await Menu.find({ user_id }).sort({createAt: -1})
     res.status(200).json(menus)
 }
 
@@ -38,7 +39,8 @@ const createMenu = async (req, res) => {
     }
     // add doc to db
     try {
-        const menu = await Menu.create({date, title, amount})
+        const user_id = req.user._id
+        const menu = await Menu.create({date, title, amount, user_id})
         res.status(200).json(menu)
     } catch (error){
         res.status(400).json({error: error.message})
