@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import MenuDetails from '../components/MenuDetails'
+import MenuForm from "../components/MenuForm"
 
 const Home = () => {
     const [menus, setMenus] = useState(null)
@@ -20,6 +21,7 @@ const Home = () => {
                     <MenuDetails key={menu._id} menu={menu} />
                 ))}
             </div>
+            <MenuForm />
         </div>
     )
 }
