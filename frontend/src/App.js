@@ -1,7 +1,7 @@
-// import { useState } from "react";
 import { Navbar } from "./components/Navbar"
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Recipes from "./pages/Recipes";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useAuthContext } from "./hooks/useAuthContext";
 import Home from './pages/Home';
@@ -19,6 +19,10 @@ function App() {
               element={user ? <Home /> : <Navigate to="/login" />}
             />
             <Route 
+              path='/recipes'
+              element={user ? <Recipes /> : <Navigate to="/login" />}
+            />
+            <Route 
               path='/login'
               element={!user ? <Login /> : <Navigate to="/" />}
             />
@@ -29,7 +33,6 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
-    {/* <Navbar /> */}
     </div>
   );
 }

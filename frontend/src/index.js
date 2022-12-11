@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import { MenusContextProvider } from "./context/MenuContext";
 import { AuthContextProvider } from "./context/AuthContext";
+import { RecipesContextProvider } from "./context/RecipeContext";
 
 // ReactDOM.createRoot(document.getElementById('root')).render(
 //     <React.StrictMode>
@@ -18,7 +19,9 @@ root.render(
   <React.StrictMode>
     <AuthContextProvider>
       <MenusContextProvider>
-        <App />
+        <RecipesContextProvider>
+          <App />
+        </RecipesContextProvider>
       </MenusContextProvider>
     </AuthContextProvider>
   </React.StrictMode>

@@ -15,6 +15,9 @@ export const Navbar = () => {
         <Link to="/">
           <h1>Food menu</h1>
         </Link>
+        <Link to="/recipes">
+          <h1>Recipes</h1>
+        </Link>
         <nav>
           {user && (
             <div>
