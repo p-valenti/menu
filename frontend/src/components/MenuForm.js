@@ -1,6 +1,8 @@
 import { useState } from "react"
+import { useMenusContext } from "../hooks/useMenusContext"
 
 const MenuForm = () => {
+    const { dispatch } = useMenusContext()
     const [date, setDate] = useState('')
     const [title, setTitle] = useState('')
     const [amount, setAmount] = useState('')
@@ -26,6 +28,7 @@ const MenuForm = () => {
             setAmount('')
             setError(null)
             console.log('new menu added', json)
+            dispatch({type: 'CREATE_MENU', payload: json})
         }
     }
     return (
@@ -55,4 +58,4 @@ const MenuForm = () => {
     )
 }
 
-export default MenuForm;
+export default MenuForm
