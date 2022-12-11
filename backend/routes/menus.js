@@ -6,8 +6,10 @@ const {
     deleteMenu,
     updateMenu
 } = require('../controllers/menuController')
-
+const requireAuth = require('../middleware/requireAuth')
 const router = express.Router()
+// require auth for all menu routes
+router.use(requireAuth)
 
 // GET all menus
 router.get('/', getMenus)
