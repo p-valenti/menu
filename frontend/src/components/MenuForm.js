@@ -7,9 +7,10 @@ const MenuForm = () => {
     const [title, setTitle] = useState('')
     const [amount, setAmount] = useState('')
     const [error, setError] = useState(null)
+    const [emptyFields, setEmptyFields] = useState([])
 
     const handleSubmit = async (e) => {
-        // e.preventDefalt()
+        e.preventDefault()
         const menu = {date, title, amount}
         const response = await fetch('/api/menus', {
             method: 'POST',
@@ -21,12 +22,14 @@ const MenuForm = () => {
         const json = await response.json()
         if (!response.ok) {
             setError(json.error)
+            setEmptyFields(json.emptyFields)
         }
         if (response.ok) {
             setDate('')
             setTitle('')
             setAmount('')
             setError(null)
+            setEmptyFields([])
             console.log('new menu added', json)
             dispatch({type: 'CREATE_MENU', payload: json})
         }
@@ -39,18 +42,21 @@ const MenuForm = () => {
                 type="text"
                 onChange={(e) => setDate(e.target.value)}
                 value={date}
+                className={emptyFields.includes('date') ? 'error' : ''}
             />
             <label>Title:</label>
             <input
                 type="text"
                 onChange={(e) => setTitle(e.target.value)}
                 value={title}
+                className={emptyFields.includes('title') ? 'error' : ''}
             />
             <label>Amount:</label>
             <input
                 type="number"
                 onChange={(e) => setAmount(e.target.value)}
                 value={amount}
+                className={emptyFields.includes('amount') ? 'error' : ''}
             />
             <button>Add Menu</button>
             {error && <div className="error">{error}</div>}

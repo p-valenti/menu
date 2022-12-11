@@ -23,6 +23,19 @@ const getMenu = async (req, res) => {
 // create new menu
 const createMenu = async (req, res) => {
     const {date, title, amount} = req.body
+    let emptyFields = []
+    if(!date) {
+        emptyFields.push('date')
+    }
+    if(!title) {
+        emptyFields.push('title')
+    }
+    if(!amount) {
+        emptyFields.push('amount')
+    }
+    if(emptyFields.length > 0) {
+        return res.status(400).json({error: 'Please fill in all the fields', emptyFields})
+    }
     // add doc to db
     try {
         const menu = await Menu.create({date, title, amount})
