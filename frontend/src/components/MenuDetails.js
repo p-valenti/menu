@@ -16,7 +16,7 @@ const MenuDetails = ({menu}) => {
             <h4>{menu.date}</h4>
             <p>{menu.title} - {menu.amount}</p>
             <p>{menu.createdAt}</p>
-            <span onClick={handleClick}>delete</span>
+            <span className="material-symbols-outlined" onClick={handleClick}>delete</span>
         </div> 
     )
 }
