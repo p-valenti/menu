@@ -1,22 +1,28 @@
 import { useEffect } from "react"
 import { useMenusContext } from "../hooks/useMenusContext"
+import { useAuthContext } from "../hooks/useAuthContext"
 import MenuDetails from '../components/MenuDetails'
 import MenuForm from "../components/MenuForm"
 
 const Home = () => {
     const {menus, dispatch} = useMenusContext()
-    // const [menus, setMenus] = useState(null)
+    const {user} = useAuthContext()
     useEffect(() => {
         const fetchMenus = async () => {
-            const response = await fetch('/api/menus')
+            const response = await fetch('/api/menus', {
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                }
+            })
             const json = await response.json()
             if (response.ok) {
-                // setMenus(json)
                 dispatch({type: 'SET_MENUS', payload: json})
             }
         }
-        fetchMenus()
-    }, [dispatch])
+        if (user) {
+            fetchMenus()
+        }
+    }, [dispatch, user])
     return (
         <div className="home">
             <div className="menus">

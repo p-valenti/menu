@@ -1,8 +1,10 @@
 import { useState } from "react"
 import { useMenusContext } from "../hooks/useMenusContext"
+import { useAuthContext } from "../hooks/useAuthContext"
 
 const MenuForm = () => {
     const { dispatch } = useMenusContext()
+    const { user } = useAuthContext()
     const [date, setDate] = useState('')
     const [title, setTitle] = useState('')
     const [amount, setAmount] = useState('')
@@ -11,12 +13,17 @@ const MenuForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if (!user) {
+            setError('You must be logged in')
+            return
+        }
         const menu = {date, title, amount}
         const response = await fetch('/api/menus', {
             method: 'POST',
             body: JSON.stringify(menu),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
         })
         const json = await response.json()
