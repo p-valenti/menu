@@ -1,4 +1,4 @@
-import { createContex, createContext, useReducer } from 'react'
+import { createContext, useReducer } from 'react'
 
 export const MenusContext = createContext()
 
@@ -11,6 +11,10 @@ export const menusReducer = (state, action) => {
         case 'CREATE_MENU':
             return {
                 menus: [action.payload, ...state.menus]
+            }
+        case 'DELETE_MENU':
+            return {
+                menus: state.menus.filter((m) => m._id !== action.payload._id)
             }
         default:
             return state
