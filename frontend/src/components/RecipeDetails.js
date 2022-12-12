@@ -21,11 +21,11 @@ const RecipeDetails = ({recipe}) => {
     }
     return (
         <div className="menu-details">
-            <h4>{recipe.name}</h4>
-            <p>{recipe.preparation}</p>
-            <p>{recipe.cooking}</p>
-            <p>{recipe.ingredients}</p>
-            <p>{recipe.text}</p>
+            <h4>Name: {recipe.name}</h4>
+            <p>Time of preparation: {recipe.preparation}</p>
+            <p>Time of cooking: {recipe.cooking}</p>
+            <p>Ingredients: {recipe.ingredients}</p>
+            <p>Recipe: {recipe.text}</p>
             <span className="material-symbols-outlined" onClick={handleClick}>delete</span>
         </div> 
     )
