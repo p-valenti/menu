@@ -24,7 +24,7 @@ const Recipes = () => {
         }
     }, [dispatch, user])
     return (
-        <div className="home">
+        <div className="home" id="recipes">
             <div className="menus">
                 {recipes && recipes.map((recipe) => (
                     <RecipeDetails key={recipe._id} recipe={recipe} />
