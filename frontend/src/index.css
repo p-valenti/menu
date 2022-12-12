@@ -1,37 +1,52 @@
 /* google font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
 
 /* layout */
 :root {
-  --primary: #1aac83;
-  --error: #e7195a;
+  --primary: #1182ac;
+  --error: #7e3430;
 }
 body {
-  background: #f1f1f1;
+  /* background: #c74949; */
+  background-image: url("./bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   margin: 0;
-  font-family: "Poppins";
+  font-family: 'Raleway', sans-serif;
 }
 header {
-  background: #fff;
+  background: rgb(71, 88, 85);
 }
 header .container {
   max-width: 1400px;
+  height: 40px;
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: 10px 10px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 header a {
-  color: #333;
+  color: rgb(131, 194, 192);
   text-decoration: none;
+  font-size: 0.8em;
 }
 .pages{
   max-width: 1400px;
   padding: 20px;
   margin: 0 auto;
 }
-
+.about {
+  color: #ffefef;
+  font-size: 40px;
+  background-size: cover;
+}
+.about a {
+  text-decoration: none;
+  color: #ffefef;
+  font-size: 20px;
+}
 /* homepage */
 .home {
   display: grid;
@@ -39,7 +54,8 @@ header a {
   gap: 100px;
 }
 .menu-details {
-  background: #fff;
+  background: rgb(128, 180, 175);
+  width: 50%;
   border-radius: 4px;
   margin: 20px auto;
   padding: 20px;
@@ -54,20 +70,19 @@ header a {
 .menu-details p {
   margin: 0;
   font-size: 0.9em;
-  color: #555;
+  color: rgb(37, 36, 36);
 }
 .menu-details span {
   position: absolute;
   top: 20px;
   right: 20px;
   cursor: pointer;
-  background: #f1f1f1;
+  background: rgb(128, 180, 175);
   padding: 6px;
   border-radius: 50%;
-  color: #333;
+  color: rgb(47, 46, 46);
 }
 
-/* new workout form */
 label, input {
   display: block;
 }
@@ -76,18 +91,23 @@ input {
   margin-top: 10px;
   margin-bottom: 20px;
   width: 100%;
-  border: 1px solid #ddd;
+  border: 1px solid rgb(128, 180, 175);
   border-radius: 4px;
   box-sizing: border-box;
 }
 form button {
-  background: var(--primary);
+  background:rgb(128, 180, 175);
   border: 0;
-  color: #fff;
+  color: black;
   padding: 10px;
-  font-family: "Poppins";
+  font-family: 'Raleway', sans-serif;
   border-radius: 4px;
   cursor: pointer;
+}
+.create h3, label{
+  color:white;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
 }
 div.error {
   padding: 10px;
@@ -104,17 +124,18 @@ input.error {
 nav {
   display: flex;
   align-items: center;
+  color: rgb(131, 194, 192);
 }
 nav a {
   margin-left: 10px;
 }
 nav button {
-  background: #fff;
-  color: var(--primary);
+  background: rgb(60, 89, 81);
+  color: black;
   border: 2px solid var(--primary);
   padding: 6px 10px;
   border-radius: 4px;
-  font-family: "Poppins";
+  font-family: 'Raleway', sans-serif;
   cursor: pointer;
   font-size: 1em;
   margin-left: 10px;
@@ -123,6 +144,9 @@ form.signup, form.login {
   max-width: 400px;
   margin: 40px auto;
   padding: 20px;
-  background: #fff;
+  background:rgb(205, 222, 220);
   border-radius: 4px;
+}
+.link {
+  width: 250px;
 }

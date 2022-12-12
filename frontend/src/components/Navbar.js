@@ -13,6 +13,9 @@ export const Navbar = () => {
     <header>
       <div className="container">
         <Link to="/">
+          <h1>About</h1>
+        </Link>
+        <Link to="/menus">
           <h1>Food menu</h1>
         </Link>
         <Link to="/recipes">
