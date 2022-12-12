@@ -7,13 +7,14 @@
   --primary: #1182ac;
   --error: #7e3430;
 }
-body {
+body, html {
   /* background: #c74949; */
   background-image: url("./bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   margin: 0;
   font-family: 'Raleway', sans-serif;
+  height: 100%;
 }
 header {
   background: rgb(71, 88, 85);
@@ -41,6 +42,7 @@ header a {
   color: #ffefef;
   font-size: 40px;
   background-size: cover;
+
 }
 .about a {
   text-decoration: none;
