@@ -3,25 +3,17 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const menuSchema = new Schema({
-    name: {
+    date: {
         type: String,
         required: true,
     },
-    timeOfPreparation: {
+    title: {
+        type: String,
+        required: true
+    },
+    amount: {
         type: Number,
-        required: false
-    },
-    timeOfCooking: {
-        type: Number,
-        required: false
-    },
-    ingredients: {
-        type: String,
-        required: true,
-    },
-    recipeText: {
-        type: String,
-        required: true,
+        required: true
     },
     user_id: {
         type: String,

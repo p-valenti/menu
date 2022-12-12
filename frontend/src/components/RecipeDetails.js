@@ -22,10 +22,10 @@ const RecipeDetails = ({recipe}) => {
     return (
         <div className="menu-details">
             <h4>{recipe.name}</h4>
-            <p>{recipe.timeOfPreparation}</p>
-            <p>{recipe.timeOfCooking}</p>
+            <p>{recipe.preparation}</p>
+            <p>{recipe.cooking}</p>
             <p>{recipe.ingredients}</p>
-            <p>{recipe.recipeText}</p>
+            <p>{recipe.text}</p>
             <span className="material-symbols-outlined" onClick={handleClick}>delete</span>
         </div> 
     )

@@ -6,10 +6,10 @@ const RecipeForm = () => {
     const { dispatch } = useRecipesContext()
     const { user } = useAuthContext()
     const [name, setName] = useState('')
-    const [timeOfPreparation, setTimeOfPreparation] = useState('')
-    const [timeOfCooking, setTimeOfCooking] = useState('')
+    const [preparation, setPreparation] = useState('')
+    const [cooking, setCooking] = useState('')
     const [ingredients, setIngredients] = useState('')
-    const [recipeText, setRecipeText] = useState('')
+    const [text, setText] = useState('')
     const [error, setError] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
 
@@ -19,7 +19,7 @@ const RecipeForm = () => {
             setError('You must be logged in')
             return
         }
-        const recipe = {name, timeOfPreparation, timeOfCooking, ingredients, recipeText}
+        const recipe = {name, preparation, cooking, ingredients, text}
         const response = await fetch('/api/recipes', {
             method: 'POST',
             body: JSON.stringify(recipe),
@@ -35,10 +35,10 @@ const RecipeForm = () => {
         }
         if (response.ok) {
             setName('')
-            setTimeOfPreparation('')
-            setTimeOfCooking('')
+            setPreparation('')
+            setCooking('')
             setIngredients('')
-            setRecipeText('')
+            setText('')
             setError(null)
             setEmptyFields([])
             console.log('new recipe added', json)
@@ -58,15 +58,15 @@ const RecipeForm = () => {
             <label>Time of preparation:</label>
             <input
                 type="number"
-                onChange={(e) => setTimeOfPreparation(e.target.value)}
-                value={timeOfPreparation}
+                onChange={(e) => setPreparation(e.target.value)}
+                value={preparation}
                 className={emptyFields.includes('timeOfPreparation') ? 'error' : ''}
             />
             <label>Time of cooking:</label>
             <input
                 type="number"
-                onChange={(e) => setTimeOfCooking(e.target.value)}
-                value={timeOfCooking}
+                onChange={(e) => setCooking(e.target.value)}
+                value={cooking}
                 className={emptyFields.includes('timeOfCooking') ? 'error' : ''}
             />
             <label>Ingredients:</label>
@@ -79,8 +79,8 @@ const RecipeForm = () => {
             <label>Recipe:</label>
             <input
                 type="text"
-                onChange={(e) => setRecipeText(e.target.value)}
-                value={recipeText}
+                onChange={(e) => setText(e.target.value)}
+                value={text}
                 className={emptyFields.includes('recipeText') ? 'error' : ''}
             />
             <button>Add Recipe</button>

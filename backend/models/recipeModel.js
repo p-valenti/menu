@@ -3,17 +3,25 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const recipeSchema = new Schema({
-    date: {
+    name: {
         type: String,
         required: true,
     },
-    title: {
-        type: String,
-        required: true
-    },
-    amount: {
+    preparation: {
         type: Number,
-        required: true
+        required: false
+    },
+    cooking: {
+        type: Number,
+        required: false
+    },
+    ingredients: {
+        type: String,
+        required: true,
+    },
+    text: {
+        type: String,
+        required: true,
     },
     user_id: {
         type: String,

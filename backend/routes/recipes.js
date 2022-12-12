@@ -12,18 +12,18 @@ const router = express.Router()
 router.use(requireAuth)
 
 // GET all Recipes
-router.get('/recipes', getRecipes)
+router.get('/', getRecipes)
 
 // GET a single Recipe
-router.get('/recipes/:id', getRecipe)
+router.get('/:id', getRecipe)
 
 //POST a new Recipe
-router.post('/recipes', createRecipe)
+router.post('/', createRecipe)
 
 //DELETE a Recipe
-router.delete('/recipes/:id', deleteRecipe)
+router.delete('/:id', deleteRecipe)
 
 //UPDATE a Recipe
-router.patch('/recipes/:id', updateRecipe)
+router.patch('/:id', updateRecipe)
 
 module.exports = router
