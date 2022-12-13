@@ -12,16 +12,16 @@ export const Navbar = () => {
   return (
     <header>
       <div className="container">
-        <Link to="/">
+        <Link className="item1" to="/">
           <h1>About</h1>
         </Link>
-        <Link to="/menus">
+        <Link className="item2" to="/menus">
           <h1>Food menu</h1>
         </Link>
-        <Link to="/recipes">
+        <Link className="item3" to="/recipes">
           <h1>Recipes</h1>
         </Link>
-        <nav>
+        <nav className="item4">
           {user && (
             <div>
               <span>{user.email}</span>
