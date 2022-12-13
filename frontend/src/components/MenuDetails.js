@@ -1,5 +1,6 @@
 import { useMenusContext} from '../hooks/useMenusContext'
 import { useAuthContext } from '../hooks/useAuthContext'
+import { format } from 'date-fns' 
 
 const MenuDetails = ({menu}) => {
     const { dispatch } = useMenusContext()
@@ -21,7 +22,7 @@ const MenuDetails = ({menu}) => {
     }
     return (
         <div className="menu-details">
-            <h4>{menu.date}</h4>
+            <h4>{format(new Date(menu.date), 'yyyy/MM/dd')}</h4>
             <p>{menu.title} - {menu.amount}</p>
             <p>{menu.createdAt}</p>
             <span className="material-symbols-outlined" onClick={handleClick}>delete</span>

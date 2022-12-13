@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 
 const menuSchema = new Schema({
     date: {
-        type: String,
+        type: Date,
         required: true,
     },
     title: {
