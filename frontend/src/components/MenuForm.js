@@ -10,6 +10,23 @@ const MenuForm = () => {
     const [amount, setAmount] = useState('')
     const [error, setError] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
+    const [list, setList] = useState([])
+    const [name, setName] = useState('')
+
+    function handleChange(event) {
+        setName(event.target.value);
+    }
+
+    function handleAmount(event) {
+        setAmount(event.target.value);
+    }
+
+    function handleAdd() {
+        const newList = list.concat({name, amount});
+        setList(newList);
+        setName('')
+        setAmount(0)
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -17,16 +34,18 @@ const MenuForm = () => {
             setError('You must be logged in')
             return
         }
-        const menu = {date, title, amount}
+        const menu = {date, title, list}
+        let body = JSON.stringify(menu);
         const response = await fetch('/api/menus', {
             method: 'POST',
-            body: JSON.stringify(menu),
+            body: body,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${user.token}`
             }
         })
         const json = await response.json()
+        console.log(emptyFields)
         if (!response.ok) {
             setError(json.error)
             setEmptyFields(json.emptyFields)
@@ -39,6 +58,8 @@ const MenuForm = () => {
             setEmptyFields([])
             console.log('new menu added', json)
             dispatch({type: 'CREATE_MENU', payload: json})
+            setList([])
+            setName('')
         }
     }
     return (
@@ -46,25 +67,34 @@ const MenuForm = () => {
             <h3>Add a New Menu</h3>
             <label>Date:</label>
             <input
-                type="text"
+                type="date"
                 onChange={(e) => setDate(e.target.value)}
                 value={date}
                 className={emptyFields.includes('date') ? 'error' : ''}
             />
-            <label>Title:</label>
+            <label>Meal:</label>
             <input
                 type="text"
                 onChange={(e) => setTitle(e.target.value)}
                 value={title}
                 className={emptyFields.includes('title') ? 'error' : ''}
             />
-            <label>Amount:</label>
-            <input
-                type="number"
-                onChange={(e) => setAmount(e.target.value)}
-                value={amount}
-                className={emptyFields.includes('amount') ? 'error' : ''}
-            />
+            <label>Dishes:</label>
+            <ul>
+                {list.map((item, index) => (
+                    <li key={index}>{item.name} - {item.amount}</li>
+                ))}
+            </ul>
+            <div>
+                <input type="text" value={name} onChange={handleChange}/>
+                <input type="number"
+                       value={amount}
+                       onChange={handleAmount}
+                       className={emptyFields.includes('amount') ? 'error' : ''}/>
+                <button type="button" onClick={handleAdd}>
+                    Add
+                </button>
+            </div>
             <button>Add Menu</button>
             {error && <div className="error">{error}</div>}
         </form>

@@ -1,4 +1,5 @@
 const Menu = require('../models/menuModel')
+const Dish = require('../models/menuModel')
 const mongoose = require('mongoose')
 
 //get all menus
@@ -23,7 +24,7 @@ const getMenu = async (req, res) => {
 
 // create new menu
 const createMenu = async (req, res) => {
-    const {date, title, amount} = req.body
+    const {date, title, list} = req.body
     let emptyFields = []
     if(!date) {
         emptyFields.push('date')
@@ -31,18 +32,21 @@ const createMenu = async (req, res) => {
     if(!title) {
         emptyFields.push('title')
     }
-    if(!amount) {
-        emptyFields.push('amount')
-    }
     if(emptyFields.length > 0) {
         return res.status(400).json({error: 'Please fill in all the fields', emptyFields})
     }
     // add doc to db
     try {
         const user_id = req.user._id
-        const menu = await Menu.create({date, title, amount, user_id})
+        const dishes = list.map((item) => ({
+                title: item.name,
+                amount: item.amount
+            })
+        )
+        const menu = await Menu.create({date, title, dishes, user_id,})
         res.status(200).json(menu)
-    } catch (error){
+    } catch (error) {
+        console.log(error)
         res.status(400).json({error: error.message})
     }
 }
