@@ -7,11 +7,11 @@ const recipeSchema = new Schema({
         type: String,
         required: true,
     },
-    preparation: {
+    prepTimeSec: {
         type: Number,
         required: false
     },
-    cooking: {
+    cookTimeSec: {
         type: Number,
         required: false
     },
@@ -19,7 +19,7 @@ const recipeSchema = new Schema({
         type: String,
         required: true,
     },
-    text: {
+    instruction: {
         type: String,
         required: true,
     },
